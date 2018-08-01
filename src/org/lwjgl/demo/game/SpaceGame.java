@@ -276,6 +276,15 @@ public class SpaceGame {
                 if (key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE) {
                     glfwSetWindowShouldClose(window, true);
                 }
+                if (key == GLFW_KEY_C && action == GLFW_PRESS) {
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            System.out.println("Trying to call glGenTextures cross-thread...");
+                            System.out.println("Result: " + glGenTextures());
+                        }
+                    }.start();
+                }
                 if (action == GLFW_PRESS || action == GLFW_REPEAT) {
                     keyDown[key] = true;
                 } else {
